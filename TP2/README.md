@@ -2,13 +2,13 @@
 This TP is about implementing quadratic (C1) and cubic (C2) Bézier splines.
 
 ```bash
-cd geonum2020/
+cd geonum/
 git pull
 ```
 or, if you don't have the local repo
 ```bash
-git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum2020.git
-cd geonum2020/
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum.git
+cd geonum/
 ```
 Then
 ```
