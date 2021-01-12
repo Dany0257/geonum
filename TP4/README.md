@@ -2,13 +2,13 @@
 In this TP, you'll implement three subdivision schemes for closed curves: Chaikin, corner cutting and four-point.
 
 ```bash
-cd geonum2020/
+cd geonum/
 git pull
 ```
 or, if you don't have the local repo
 ```bash
-git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum2020.git
-cd geonum2020/
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum.git
+cd geonum/
 ```
 Then
 ```
