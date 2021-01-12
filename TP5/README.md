@@ -2,13 +2,13 @@
 In this TP, you'll implement the classical Lane-Riesenfeld algorithm, as well as its four-point and six-point variants.
 
 ```bash
-cd geonum2020/
+cd geonum/
 git pull
 ```
 or, if you don't have the local repo
 ```bash
-git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum2020.git
-cd geonum2020/
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum.git
+cd geonum/
 ```
 Then
 ```
