@@ -6,13 +6,13 @@
 In this TP, you'll implement the De Boor's algorithm for computation of B-spline curves.
 
 ```bash
-cd geonum2020/
+cd geonum/
 git pull
 ```
 or, if you don't have the local repo
 ```bash
-git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum2020.git
-cd geonum2020/
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum.git
+cd geonum/
 ```
 Then
 ```
