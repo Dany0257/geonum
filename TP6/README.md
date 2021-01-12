@@ -10,13 +10,13 @@ viewer.add_patch(X,Y,Z)
 
 First, we need to setup the required python packages `PyOpenGL` and `PyGLFW`. Do
 ```bash
-cd geonum2020/
+cd geonum/
 git pull
 ```
 or, if you don't have the local repo
 ```bash
-git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum2020.git
-cd geonum2020/
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum.git
+cd geonum/
 ```
 
 You should have the `TP6/` and `viewer/` folders, plus two bash scripts: `setupPackages.sh` and `exportPath.sh`.
