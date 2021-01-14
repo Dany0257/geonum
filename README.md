@@ -1,12 +1,6 @@
 # Géométrie numérique, spring 2021
 Welcome to the git repository of the course *Géométrie numérique* 2021.
 
-See [course website](https://geonum.gricad-pages.univ-grenoble-alpes.fr/geonum-pages/) for more details.
-
-
-This repo started with a duplication from https://github.com/GeoNumTP/GeoNum2017 by Tibor Stanko.
-It is now mantained by Sergi Pujades.
-
 ## Quickstart
 ```bash
 cd your/working/dir/
@@ -14,6 +8,10 @@ git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum.git
 cd geonum
 python TP1/tp1.py
 ```
+
+## Course website
+The [course website](https://geonum.gricad-pages.univ-grenoble-alpes.fr/geonum-pages/) with more information for the TPs.
+
 
 ## Syllabus
 1. Bézier curves | [theory](https://geonum.gricad-pages.univ-grenoble-alpes.fr/geonum-pages/tp1.html) | [code](https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum/tree/master/TP1#tp1--bézier-curves-de-casteljaus-algorithm)  
@@ -25,6 +23,8 @@ python TP1/tp1.py
 1. B-spline surfaces | [theory](https://geonum.gricad-pages.univ-grenoble-alpes.fr/geonum-pages/tp7.html) | [code](https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum/tree/master/TP7#tp7--b-spline-surfaces)
 1. Subdivision B-surfaces | [theory](https://geonum.gricad-pages.univ-grenoble-alpes.fr/geonum-pages/tp8.html) | [code](https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum/tree/master/TP8#tp8--uniform-b-splines-as-subdivision-surfaces)
 1. Triangle mesh subdivision | [theory](https://geonum.gricad-pages.univ-grenoble-alpes.fr/geonum-pages/tp9.html) | [code](https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum/tree/master/TP9#tp9--subdivision-surfaces-on-triangle-meshes)
+
+
 
 ## Resources
 * [Learn Python in 10 minutes](https://www.stavros.io/tutorials/python/)
@@ -136,3 +136,10 @@ Example:
 # plot dashed green lines and blue circles
 >>> plt.plot(x, y, color='green', linestyle='dashed', marker='o', markerfacecolor='blue', markersize=12)
 ```
+
+
+
+## Acknowledgements
+
+This repo started from https://github.com/GeoNumTP/GeoNum2017 by Tibor Stanko.
+It is now mantained by Sergi Pujades.
