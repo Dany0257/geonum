@@ -57,7 +57,7 @@ def ReadDatapoints( filename ) :
 #    X0 :  n x 2 matrix, represents a polygon
 #
 # Output
-#    X1 :  n x 2 matrix, subdivided polygon
+#    X1 :  2*n x 2 matrix, subdivided polygon
 #
 def Chaikin( X0 ) :
     
@@ -84,7 +84,7 @@ def Chaikin( X0 ) :
 #   a,b :  corner cutting parameters
 #
 # Output
-#    X1 :  n x 2 matrix, subdivided polygon
+#    X1 :  2*n x 2 matrix, subdivided polygon
 #
 def CornerCutting( X0, a, b ) :
     
@@ -111,7 +111,7 @@ def CornerCutting( X0, a, b ) :
 #     w :  tension parameter (generalized four-point only)
 #
 # Output
-#    X1 :  n x 2 matrix, subdivided polygon
+#    X1 :  2*n x 2 matrix, subdivided polygon
 #
 def FourPoint( X0, w ) :
     
