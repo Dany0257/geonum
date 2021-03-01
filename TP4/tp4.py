@@ -216,10 +216,14 @@ if __name__ == "__main__":
         plt.cla()
         
         # plot coarse polygon
-        plt.fill( DataPts[:,0], DataPts[:,1], edgecolor=.33*np.ones(3), linewidth=1, linestyle='dashed', fill=False)
+        plt.fill( DataPts[:,0], DataPts[:,1], edgecolor=.33*np.ones(3), linewidth=1, linestyle='--', fill=False)
+        # For older versions of  matplotlib you will get a linestyle error. To fix it use
+        # plt.fill( DataPts[:,0], DataPts[:,1], edgecolor=.33*np.ones(3), linewidth=1, linestyle='dashed', fill=False)
         
         # plot subdivided polygon
-        plt.fill( SubPts[:,0], SubPts[:,1], edgecolor='b', linestyle='solid', linewidth=2, fill=False ) 
+        plt.fill( SubPts[:,0], SubPts[:,1], edgecolor='b', linestyle='-', linewidth=2, fill=False ) 
+        # For older versions of  matplotlib you will get a linestyle error. To fix it use
+        # plt.fill( SubPts[:,0], SubPts[:,1], edgecolor='b', linestyle='solid', linewidth=2, fill=False ) 
             
         # titles
         plt.gcf().canvas.set_window_title('TP4 Subdivision curves')
