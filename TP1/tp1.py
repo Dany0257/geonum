@@ -35,7 +35,7 @@ DATADIR = filename = TP+"data/"
 def ReadPolygon( filename ) :
     datafile = open(filename,'r');
     l = datafile.readline()
-    degree = np.fromstring(l,sep=' ',dtype=int)
+    degree = np.fromstring(l,sep=' ',dtype=int)[0]
     BezierPts = np.fromfile(datafile,count=2*(degree+1),sep=' ',dtype=float)
     BezierPts = BezierPts.reshape(-1,2)
     return BezierPts
@@ -124,8 +124,8 @@ if __name__ == "__main__":
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print "error:  invalid dataname '" + dataname + "'"
-        print "usage:  python tp1.py  [simple,infinity,spiral]  [sampling_density]"
+        print(f"error:  invalid dataname '{dataname}'")
+        print("usage:  python tp1.py  [simple,infinity,spiral]  [sampling_density]")
         
     else :    
         # read control points

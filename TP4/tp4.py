@@ -154,8 +154,8 @@ if __name__ == "__main__":
     else :
         scheme = "CH"
     if fullname(scheme) == "Invalid" :
-        print " error :  invalid scheme "+scheme
-        print "          should be CH, CC or FP"
+        print(" error :  invalid scheme "+scheme)
+        print("          should be CH, CC or FP")
         sys.exit(0)
     ###############################
     ## arg 3 : depth of subdivision
@@ -166,16 +166,16 @@ if __name__ == "__main__":
         depth = 3
     
     # output : scheme name and subdivision depth
-    print " "+fullname(scheme)
-    print " depth = " + str(depth)
+    print(" "+fullname(scheme))
+    print(" depth = " + str(depth))
     
     # filename
     filename = DATADIR + dataname + ".data"
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print " error :  invalid dataname '" + dataname + "'"
-        print " usage :  python tp4.py  [data=simple,infinity,bone,bunny]  [scheme=CH,CC,FP]  [depth=3]"
+        print(" error :  invalid dataname '" + dataname + "'")
+        print(" usage :  python tp4.py  [data=simple,infinity,bone,bunny]  [scheme=CH,CC,FP]  [depth=3]")
         
     else :
 
@@ -226,7 +226,7 @@ if __name__ == "__main__":
         # plt.fill( SubPts[:,0], SubPts[:,1], edgecolor='b', linestyle='solid', linewidth=2, fill=False ) 
             
         # titles
-        plt.gcf().canvas.set_window_title('TP4 Subdivision curves')
+        plt.gcf().canvas.manager.set_window_title('TP4 Subdivision curves')
         plt.title(dataname+': scheme='+fullname(scheme)+', depth='+str(depth))
 
         ##

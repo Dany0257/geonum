@@ -50,12 +50,12 @@ def ReadBSpline( filename, nurbs=False ) :
         dim=2
         
     # datapoints
-    p = np.fromstring(datafile.readline(),sep=' ',dtype=int)
+    p = np.fromstring(datafile.readline(),sep=' ',dtype=int)[0]
     ControlPts = np.fromfile(datafile,count=dim*p,sep=' ',dtype=float)
     ControlPts = ControlPts.reshape(-1,dim)
     
     # knots
-    k = np.fromstring(datafile.readline(),sep=' ',dtype=int)
+    k = np.fromstring(datafile.readline(),sep=' ',dtype=int)[0]
     Knots = np.fromfile(datafile,count=k,sep=' ',dtype=float)
     
     return ControlPts, Knots
@@ -124,9 +124,9 @@ if __name__ == "__main__":
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print " error :  invalid dataname '" + dataname + "'"
-        print " usage :  python tp3.py  [camel,circle,simple,spiral,spiral2]  [sampling_density]"
-        print "          python tp3.py  [circle7,circle9]                     [sampling_density]  nurbs"
+        print(" error :  invalid dataname '" + dataname + "'")
+        print(" usage :  python tp3.py  [camel,circle,simple,spiral,spiral2]  [sampling_density]")
+        print("          python tp3.py  [circle7,circle9]                     [sampling_density]  nurbs")
         
     else :    
         # read B-spline control points and knot sequence
@@ -208,7 +208,7 @@ if __name__ == "__main__":
         plt.axis('equal')
         
         # titles
-        plt.gcf().canvas.set_window_title('TP3 B-splines')
+        plt.gcf().canvas.manager.set_window_title('TP3 B-splines')
         plt.title(info+dataname+', '+str(density)+" pts/segment")
 
         ##

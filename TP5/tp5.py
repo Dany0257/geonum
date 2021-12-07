@@ -40,7 +40,7 @@ DATADIR = filename = TP+"data/"
 #
 def ReadDatapoints( filename ) :
     datafile = open(filename,'r');
-    p = np.fromstring(datafile.readline(),sep=' ',dtype=int)
+    p = np.fromstring(datafile.readline(),sep=' ',dtype=int)[0]
     DataPts = np.fromfile(datafile,count=2*p,sep=' ',dtype=float)
     DataPts = DataPts.reshape(-1,2)
     return DataPts
@@ -174,8 +174,8 @@ if __name__ == "__main__":
     elif scheme == "SP" :
         schemeName = "6-point"
     else :            
-        print " error :  invalid scheme "+scheme
-        print "          should be LR or FP or SP"
+        print(" error :  invalid scheme "+scheme)
+        print("          should be LR or FP or SP")
         sys.exit(0)
         
     #---------------------------------------------
@@ -197,8 +197,8 @@ if __name__ == "__main__":
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print " error :  invalid dataname '" + dataname + "'"
-        print " usage :  python tp5.py  [data=hepta; bone,infinity,sumsign]  [scheme=LR; FP,SP]  [degree=3]  [subdivisions=5]"
+        print(" error :  invalid dataname '" + dataname + "'")
+        print(" usage :  python tp5.py  [data=hepta; bone,infinity,sumsign]  [scheme=LR; FP,SP]  [degree=3]  [subdivisions=5]")
         
     else :
         

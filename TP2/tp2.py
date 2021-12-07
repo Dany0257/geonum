@@ -41,7 +41,7 @@ DATADIR = filename = TP+"data/"
 def ReadData( filename ) :
     datafile = open(filename,'r');
     l = datafile.readline()
-    degree = np.fromstring(l,sep=' ',dtype=int)
+    degree = np.fromstring(l,sep=' ',dtype=int)[0]
     DataPts = np.fromfile(datafile,count=2*(degree+1),sep=' ',dtype=float)
     DataPts = DataPts.reshape(-1,2)
     return DataPts
@@ -190,8 +190,8 @@ if __name__ == "__main__":
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print "error:  invalid dataname '" + dataname + "'"
-        print "usage:  python tp2.py  [simple,infinity,semi,spiral]  [sampling_density]  [c2]"
+        print("error:  invalid dataname '" + dataname + "'")
+        print("usage:  python tp2.py  [simple,infinity,semi,spiral]  [sampling_density]  [c2]")
         
     else :    
         # read points to be interpolated
