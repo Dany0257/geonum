@@ -297,16 +297,15 @@ if __name__ == "__main__":
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print " error   :  invalid dataname '" + dataname + "'"
-        print " usage   :  tp9.py  [dataname]  [subdivision_depth=2]"
-        print " example :  python tp9.py cube 3"
-        
+        print(" error   :  invalid dataname '" + dataname + "'")
+        print(" usage   :  tp9.py  [dataname]  [subdivision_depth=2]")
+        print(" example :  python tp9.py cube 3")
     else :
         # open the datafile
-        datafile = open(filename,'r');
+        datafile = open(filename,'r')
         
         # read mesh
-        mV,mF = ReadMesh( datafile )
+        mV, mF = ReadMesh(datafile)
         
         # init subdivided mesh
         V = mV
@@ -315,14 +314,14 @@ if __name__ == "__main__":
         # use Warren's weights?
         Warren = False
         
-        print "Loop subdivision..."
-        print "         #V      #F"
+        print("Loop subdivision...")
+        print("         #V      #F")
         # iterative subdivision
-        for d in range(depth) :
-            print "%3d %7d %7d" % (d,V.shape[0],F.shape[0])
+        for d in range(depth):
+            print("%3d %7d %7d" % (d,V.shape[0],F.shape[0]))
             V,F = LoopSubdivision(V,F,Warren)
-        print "%3d %7d %7d" % (depth,V.shape[0],F.shape[0])
-        print "Done."
+        print("%3d %7d %7d" % (depth,V.shape[0],F.shape[0]))
+        print("Done.")
         
         # init Viewer
         viewer = Viewer("TP9 : Subdivision Surfaces ["+dataname+"]",[1200,800])

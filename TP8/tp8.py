@@ -112,9 +112,9 @@ if __name__ == "__main__":
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print " error   :  invalid dataname '" + dataname + "'"
-        print " usage   :  tp8.py  [torus,cylinder,grid,terrain]  [subdivision_depth=1]"
-        print " example :  python tp8.py torus 3"
+        print(" error   :  invalid dataname '" + dataname + "'")
+        print(" usage   :  tp8.py  [torus,cylinder,grid,terrain]  [subdivision_depth=1]")
+        print(" example :  python tp8.py torus 3")
         
     else :
         # init Viewer

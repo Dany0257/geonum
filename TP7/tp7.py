@@ -103,9 +103,9 @@ if __name__ == "__main__":
     
     # check if valid datafile
     if not os.path.isfile(filename) :
-        print " error   :  invalid dataname '" + dataname + "'"
-        print " usage   :  tp7.py  [simple,torus]  [sampling_density]"
-        print " example :  python tp7.py torus 20"
+        print(" error   :  invalid dataname '" + dataname + "'")
+        print(" usage   :  tp7.py  [simple,torus]  [sampling_density]")
+        print(" example :  python tp7.py torus 20")
         
     else :
         # init Viewer

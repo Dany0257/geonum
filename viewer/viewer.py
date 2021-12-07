@@ -65,6 +65,7 @@ def cube():
         [3, 2, 6],[6, 7, 3]
     ], dtype=np.uint32 )
     return V, F
+
 #-------------------------------------------------
 def test_mesh(dataname): 
     f = open(VIEWER_DIR+"testdata/"+dataname+".off","r")
@@ -77,6 +78,7 @@ def test_mesh(dataname):
     F = np.fromfile(f, dtype=np.uint32, count=4*nf, sep=" ")
     F = F.reshape(-1, 4)[:, 1:]
     return V, F
+
 #-------------------------------------------------
 def objmesh(): 
     #f = open("elephant.obj", "r")
@@ -92,6 +94,7 @@ def objmesh():
     F = np.fromfile(f, dtype=np.uint32, count=3*nf, sep=" ")
     F = F.reshape(-1, 3)
     return V, F
+
 #-------------------------------------------------
 def ortho( left, right, bottom, top, nearVal, farVal):
     result = np.identity(4)
@@ -147,18 +150,18 @@ def lookAt( az, el, zoom ) :
 class Viewer():
 
     def show_help( self ) :
-        print " "
-        print "------------------------------------------------"
-        print "  Viewer controls : "
-        print "------------------------------------------------"
-        print "  left click & drag  = rotate"
-        print "  mouse scroll       = zoom"
-        print "  pageup/pagedown    = zoom"
-        print "  [ E ]              = toggle wireframe"
-        print "  [ N ]              = toggle color by normals"
-        print "  [ F ]              = flip normals"
-        print "  [Esc]              = quit"
-        print " "
+        print(" ")
+        print("------------------------------------------------")
+        print("  Viewer controls : ")
+        print("------------------------------------------------")
+        print("  left click & drag  = rotate")
+        print("  mouse scroll       = zoom")
+        print("  pageup/pagedown    = zoom")
+        print("  [ E ]              = toggle wireframe")
+        print("  [ N ]              = toggle color by normals")
+        print("  [ F ]              = flip normals")
+        print("  [Esc]              = quit")
+        print(" ")
 
     def recompute_matrices( self ) :
         fH = math.tan(self.viewAngle / 360. * math.pi) * self.dnear
@@ -336,7 +339,7 @@ class Viewer():
         
         # Make the window's context current
         glfw.make_context_current(window)
-        
+
         # Glfw callbacks
         glfw.set_scroll_callback( window, self.mouse_scroll_callback )
         glfw.set_mouse_button_callback( window, self.mouse_button_callback )
@@ -511,13 +514,13 @@ class Viewer():
 #-------------------------------------------------
 if __name__ == "__main__":
         
-    if len(sys.argv) > 1 :
+    if len(sys.argv) > 1:
         dataname = sys.argv[1]
     else :
         dataname = "bumpy"
 
-    V,F = test_mesh(dataname)
-    
+    V, F = test_mesh(dataname)
+
     viewer = Viewer()
-    viewer.add_mesh(V,F)
+    viewer.add_mesh(V, F)
     viewer.render()
