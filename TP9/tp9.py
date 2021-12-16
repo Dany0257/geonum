@@ -22,7 +22,7 @@
 
 import sys, os, math
 import numpy as np
-from viewer import Viewer
+from viewer.viewer import Viewer
 TP = os.path.dirname(os.path.realpath(__file__)) + "/"
 
 
