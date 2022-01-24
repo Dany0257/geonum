@@ -1,5 +1,5 @@
-# Géométrie numérique, spring 2021
-Welcome to the git repository of the course *Géométrie numérique* 2021.
+# Géométrie numérique, spring 2022
+Welcome to the git repository of the course *Géométrie numérique* 2022.
 
 ## Quickstart
 ```bash
