@@ -8,16 +8,15 @@ Adding a surface patch is as easy as calling
 viewer.add_patch(X,Y,Z)
 ```
 
-First, we need to setup the required python packages `PyOpenGL` and `PyGLFW`. Do
-```bash
-cd geonum/
-git pull
+First you can test if you have all required packages and test the viewer with
 ```
-or, if you don't have the local repo
-```bash
-git clone https://gricad-gitlab.univ-grenoble-alpes.fr/geonum/geonum.git
-cd geonum/
+# test the viewer
+python viewer/viewer.py
 ```
+If an OpenGL display window appears you are good to go!
+
+
+If not, (if you are using your own computer) you need to setup the required python packages `PyOpenGL` `GLFW` and `PyGLFW`. 
 
 You should have the `TP6/` and `viewer/` folders, plus two bash scripts: `setupPackages.sh` and `exportPath.sh`.
 Execute the following commands:
