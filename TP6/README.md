@@ -1,6 +1,6 @@
-## TP6 : Bezier surfaces
+# Working with 3D surfaces 
 
-### Setup environement
+### OpenGL Viewer setup
 Today, we start working with surfaces, which means transition from 2D to 3D. 
 We will use OpenGL for rendering, but don’t worry if you have little or no 
 experience with OpenGL; a wrapper class `Viewer` is provided. 
@@ -49,6 +49,9 @@ for p in range(numpatch) :
 
 plt.show()
 ```
+
+---
+## TP6 : Bezier surfaces
 ---
 
 For the TP6, you can pass datanames and density directly as command line args.
