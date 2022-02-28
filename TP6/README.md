@@ -1,5 +1,6 @@
 ## TP6 : Bezier surfaces
 
+### Setup environement
 Today, we start working with surfaces, which means transition from 2D to 3D. 
 We will use OpenGL for rendering, but don’t worry if you have little or no 
 experience with OpenGL; a wrapper class `Viewer` is provided. 
@@ -13,40 +14,22 @@ First you can test if you have all required packages and test the viewer with
 # test the viewer
 python viewer/viewer.py
 ```
-If an OpenGL display window appears you are good to go!
 
+If an OpenGL display window appears you just need to setup the $PYTHONPATH by doing
+```bash
+source exportPath.sh
+```
+are good to go!
+
+Remember that you need to source this file everytime you open the terminal by executing `source exportPath.sh`.
 
 If not, (if you are using your own computer) you need to setup the required python packages `PyOpenGL` `GLFW` and `PyGLFW`. 
-
-You should have the `TP6/` and `viewer/` folders, plus two bash scripts: `setupPackages.sh` and `exportPath.sh`.
-Execute the following commands:
-```bash
-# download and extract packages
-. setupPackages.sh
-```
-
-This will download and compile `PyOpenGL`, `PyGLFW` and `GLFW` (as a static library).
-The `libglfw.so*` files are automatically copied to repo's root dir.
-
-Moreover, the $PYTHONPATH needs to be set up everytime you open the terminal by executing `exportPath.sh` preceded by the dot.
-```bash
-. exportPath.sh
-```
-You can `echo` the path to see if it's been set correctly.
-```bash
-echo $PYTHONPATH
-```
+You can either install them depending of your OS or check the script `setupPackages.sh` (designed for linux).
 
 Afterwards, you can test the viewer with
 ```
 # test the viewer
 python viewer/viewer.py
-```
-
-For the TP6, you can pass datanames and density directly as command line args.
-For the viewer to function properly, **python scripts need to be executed from the root dir**.
-```bash
-python TP6/tp6.py  [simple,wave,sphere,heart,teapot,teacup,teaspoon]  [density=10]
 ```
 
 ### Alternative Viewer: Using matplotlib
@@ -67,6 +50,12 @@ for p in range(numpatch) :
 plt.show()
 ```
 ---
+
+For the TP6, you can pass datanames and density directly as command line args.
+For the viewer to function properly, **python scripts need to be executed from the root dir**.
+```bash
+python TP6/tp6.py  [simple,wave,sphere,heart,teapot,teacup,teaspoon]  [density=10]
+```
 
 ### Representation
 On the implementation level, the biggest difference between curves and surfaces is the representation we'll use.
