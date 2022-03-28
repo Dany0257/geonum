@@ -57,7 +57,7 @@ def ReadPoints( datafile ) :
 def GenerateRandomTerrain(N,Amp) :
     X,Y = np.meshgrid(range(N-1,-1,-1),range(N))
     V = np.array([X,Y,Amp*np.random.rand(N,N)]).transpose().reshape(-1,3)
-    f = open(TP+"data/terrain.net","wa")
+    f = open(TP+"data/terrain.net","w")
     f.write('%d %d %d %d \n' % (N,N,0,0))
     np.savetxt(f,V,fmt='%.4f')
     f.close()
