@@ -41,7 +41,6 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 fig = plt.figure()
 ax = fig.add_subplot(111,projection='3d')
-ax.axis('equal')
 ax.axis('off')
 ...
 
@@ -49,6 +48,10 @@ for p in range(numpatch) :
     ...
     ax.plot_wireframe(X, Y, Z)
     ...
+
+# max and minimum range can be computed with the ptp function
+[minX, maxX] = np.ptp(Sx)
+ax.set_box_aspect(([minX, maxX], [minY, maxY],[minZ, maxZ]))
 
 plt.show()
 ```
