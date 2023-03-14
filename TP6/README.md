@@ -50,8 +50,8 @@ for p in range(numpatch) :
     ...
 
 # max and minimum range can be computed with the ptp function
-[minX, maxX] = np.ptp(Sx)
-ax.set_box_aspect(([minX, maxX], [minY, maxY],[minZ, maxZ]))
+lim = ax.get_w_lims()
+ax.set_box_aspect((lim[1]-lim[0],lim[3]-lim[2],lim[5]-lim[4]))
 
 plt.show()
 ```
