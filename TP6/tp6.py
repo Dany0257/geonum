@@ -23,7 +23,6 @@
 import sys, os
 import numpy as np
 from OpenGL.GL import *
-from OpenGL.GLUT import *
 from viewer.viewer import Viewer
 
 TP = os.path.dirname(os.path.realpath(__file__)) + "/"
