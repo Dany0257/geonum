@@ -4,8 +4,6 @@ import numpy as np
 import OpenGL
 from OpenGL.GL import *
 from OpenGL.GL.shaders import *
-from OpenGL.GLU import *  
-from OpenGL.GLUT import *
 OpenGL.ERROR_ON_COPY = True  
 OpenGL.ERROR_CHECKING = True
 import glfw
