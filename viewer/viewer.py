@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys
+import sys, os
 import numpy as np
 import OpenGL
 from OpenGL.GL import *
