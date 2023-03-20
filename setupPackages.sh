@@ -8,16 +8,16 @@ echo "PYTHONPATH set to $PYTHONPATH"
 #-------------------------------------------------------------------------------
 # Create local package folder
 #-------------------------------------------------------------------------------
-if [ ! -d "$(pwd)/lib/python2.7/site-packages/" ]; then
-    echo "Creating lib/python2.7/site-packages/"
-    mkdir -p "$(pwd)/lib/python2.7/site-packages/"
+if [ ! -d "$(pwd)/lib/python3.10/site-packages/" ]; then
+    echo "Creating lib/python3.10/site-packages/"
+    mkdir -p "$(pwd)/lib/python3.10/site-packages/"
 fi
 echo "==============================="
 
 #-------------------------------------------------------------------------------
 # PyOpenGL$(pwd)
 #-------------------------------------------------------------------------------
-if [ ! -d "$(pwd)/lib/python2.7/site-packages/PyOpenGL-3.1.1a1-py2.7.egg/" ]; then
+if [ ! -d "$(pwd)/lib/python3.10/site-packages/PyOpenGL-3.1.1a1-py2.7.egg/" ]; then
     wget "https://pypi.python.org/packages/source/P/PyOpenGL/PyOpenGL-3.1.1a1.tar.gz" -q --show-progress
     echo "-------------------------------"
     echo "Extract PyOpenGL-3.1.1a1.tar.gz"
@@ -32,7 +32,7 @@ if [ ! -d "$(pwd)/lib/python2.7/site-packages/PyOpenGL-3.1.1a1-py2.7.egg/" ]; th
     rm -f PyOpenGL-3.1.1a1.tar.gz
     rm -rf PyOpenGL-3.1.1a1/
 else
-    echo "PyOpenGL is already installed in lib/python2.7/site-packages/"
+    echo "PyOpenGL is already installed in lib/python3.10/site-packages/"
     echo "Skipping..."
 fi
 echo "==============================="
@@ -40,7 +40,7 @@ echo "==============================="
 #-------------------------------------------------------------------------------
 # PyGLFW
 #-------------------------------------------------------------------------------
-if [ ! -f "$(pwd)/lib/python2.7/site-packages/glfw.py" ]; then
+if [ ! -f "$(pwd)/lib/python3.10/site-packages/glfw.py" ]; then
     wget "https://pypi.python.org/packages/01/d8/155dc626d01f2b267ced7196378da77818f0560c9471ef9cdf9f02bd8611/glfw-1.3.3.tar.gz" -q --show-progress
     echo "-------------------------------"
     echo "Extract glfw-1.3.3.tar.gz"
@@ -55,7 +55,7 @@ if [ ! -f "$(pwd)/lib/python2.7/site-packages/glfw.py" ]; then
     rm -f glfw-1.3.3.tar.gz
     rm -rf glfw-1.3.3/
 else
-    echo "PyGLFW is already installed in lib/python2.7/site-packages/"
+    echo "PyGLFW is already installed in lib/python3.10/site-packages/"
     echo "Skipping..."
 fi
 echo "==============================="
