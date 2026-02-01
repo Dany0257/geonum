@@ -143,3 +143,4 @@ Example:
 
 This repo started from https://github.com/GeoNumTP/GeoNum2017 by Tibor Stanko.
 It is now mantained by Sergi Pujades.
+# geonum
