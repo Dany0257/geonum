@@ -82,12 +82,29 @@ def ReadBSpline( filename, nurbs=False ) :
 #
 #
 def DeBoor( ControlPts, Knots, r, j, t ) :
+
+    # Condition d'arrêt : niveau 0, on retourne le point de contrôle
+    if r == 0:
+        return ControlPts[j]
+
+    # Calcul du degré effectif basé sur la taille des nœuds/points
+    # degree = m - n - 1
+    # m = len(Knots)-1, n = len(ControlPts)-1
+    degree = (len(Knots)-1) - (len(ControlPts)-1) - 1
+ 
+    # Calcul du coefficient alpha
+    # alpha = (t - t_j) / (t_{j + degree - r + 1} - t_j)
+    denominator = Knots[j + degree - r + 1] - Knots[j]
     
-    pass
+    # Sécurité pour éviter la division par zéro (segments dégénérés)
+    if denominator == 0:
+        alpha = 0
+    else:
+        alpha = (t - Knots[j]) / denominator
+
+    # Récursion
+    return (1.0 - alpha) * DeBoor(ControlPts, Knots, r-1, j-1, t) + alpha * DeBoor(ControlPts, Knots, r-1, j, t)
     
-    ##
-    ## TODO : Implement the De Boor algorithm.
-    ##
 
     
 #-------------------------------------------------
@@ -144,7 +161,12 @@ if __name__ == "__main__":
         
         # plot the control polygon
         plt.plot( ControlPts[:,0], ControlPts[:,1], 'k--')
-        
+        # ---> Conversion en coordonnées homogènes pour NURBS
+        if nurbs :
+            # Les points sont actuellement [x, y, w]
+            # On veut [w*x, w*y, w]
+            ControlPts[:,0] = ControlPts[:,0] * ControlPts[:,2]
+            ControlPts[:,1] = ControlPts[:,1] * ControlPts[:,2]
         
         ##
         ## TODO : Evaluate the B-spline curve.
@@ -166,16 +188,32 @@ if __name__ == "__main__":
             ##
             ## TODO : Make sure the segment is non-degenerate.
             ##
-        
+            if Knots[j] == Knots[j+1]:
+                continue
             # prepare matrix of segment points
             Segment = np.zeros([density,dim])
-        
+            # Sampling range on the segment [t_j, t_{j+1})
+            # We generate 'density' points between these knots
+            ts = np.linspace(Knots[j], Knots[j+1], density, endpoint=False) 
+            # endpoint=False pour continuité propre? Ou True?
             ##
             ## TODO : Perform De Boor.
             ##
+            for i in range(density):
+                t = ts[i]
+                # On appelle DeBoor avec r=degree (profondeur max) et l'index actuel j
+                point = DeBoor(ControlPts, Knots, degree, j, t)
+                Segment[i, :] = point
+            
+            # ---> Projection inverse (division par w)
+            if nurbs :
+                # Segment contient [wx, wy, w]
+                # On divise par la 3eme coordonnée (w) pour retrouver x et y
+                Segment[:,0] = Segment[:,0] / Segment[:,2]
+                Segment[:,1] = Segment[:,1] / Segment[:,2]
             
             # plot the segment
-            plt.plot( Segment[:,0], Segment[:,1], '-',linewidth=3)
+            plt.plot( Segment[:,0], Segment[:,1], 'r-',linewidth=3)
         
         
         
@@ -214,7 +252,7 @@ if __name__ == "__main__":
         ##
         ## TODO : Uncomment if you want to save the render as png image in data/
         ##
-        #plt.savefig( DATADIR + dataname + ".png" )
+        plt.savefig( DATADIR + dataname +"_after_modify" +".png" )
         
         # render
         plt.show()        

@@ -107,9 +107,16 @@ def ComputeSplineC1( DataPts ) :
     #   n+1 rows for input data and n rows for inner Bezier control pts.
     BezierPts = np.zeros([2*n+1,2])
     
-    ##
-    ## TODO : Compute BezierPts.
-    ##
+    #  P_i = B_{2i}
+    BezierPts[0::2] = DataPts
+    
+    #  B_1 = (P_0 + P_1) / 2
+    BezierPts[1] = 0.5 * (DataPts[0] + DataPts[1])
+    
+    #  C1 continuity : B_{2i} = (B_{2i-1} + B_{2i+1}) / 2
+    #  =>   B_{2i+1} = 2 B_{2i} - B_{2i-1}
+    for i in range(1,n) :
+        BezierPts[2*i+1] = 2 * BezierPts[2*i] - BezierPts[2*i-1]
          
     return BezierPts
 
@@ -137,29 +144,48 @@ def ComputeSplineC2( DataPts ) :
     
     ##
     ## TODO : Fill the matrix of the system M.
-    ##          C0  :  n+1 rows
-    ##          C1  :  n-1 rows
-    ##          C2  :  n-1 rows
-    ##          bd  :    2 rows (natural spline)
-    ##
-    ## with 4 datapoints and 10 Bezier points A ... J,
-    ## the matrix has the following form:
-    ## M =                                               : corresp. equation   [type]
-    ##  |  1   0   0   0   0   0   0   0   0   0  |      : A = A                [C0]
-    ##  |  0   0   0   1   0   0   0   0   0   0  |      : D = D                [C0]
-    ##  |  0   0   0   0   0   0   1   0   0   0  |      : G = G                [C0]
-    ##  |  0   0   0   0   0   0   0   0   0   1  |      : J = J                [C0]
-    ##  |  0   0   1  -2   1   0   0   0   0   0  |      : C - 2D + E = 0       [C1]
-    ##  |  0   0   0   0   0   1  -2   1   0   0  |      : F - 2G + H = 0       [C1]
-    ##  |  0   1  -2   0   2  -1   0   0   0   0  |      : B - 2C + 2E - F = 0  [C2]
-    ##  |  0   0   0   0   1  -2   0   2  -1   0  |      : E - 2F + 2H - I = 0  [C2]
-    ##  |  1  -2   1   0   0   0   0   0   0   0  |      : A - 2B + C = 0       [natural]
-    ##  |  0   0   0   0   0   0   0   1  -2   1  |      : H - 2I + J = 0       [natural]
     ##
     
+    # C0 continuity (interpolation) : B_{3i} = P_i
+    # Rows 0 to n
+    for i in range(n+1):
+        M[i, 3*i] = 1.0
+        R[i] = DataPts[i]
+
+    # C1 continuity : B_{3i-1} - 2 B_{3i} + B_{3i+1} = 0
+    # Rows n+1 to 2n-1
+    for i in range(1, n):
+        row = n + i
+        M[row, 3*i-1] = 1.0
+        M[row, 3*i]   = -2.0
+        M[row, 3*i+1] = 1.0
+        
+    # C2 continuity : B_{3i-2} - 2 B_{3i-1} + 2 B_{3i+1} - B_{3i+2} = 0
+    # Rows 2n to 3n-2
+    for i in range(1, n):
+        row = 2*n + i - 1
+        M[row, 3*i-2] = 1.0
+        M[row, 3*i-1] = -2.0
+        M[row, 3*i+1] = 2.0
+        M[row, 3*i+2] = -1.0
+        
+    # Boundary conditions (natural spline)
+    # Start: B_0 - 2 B_1 + B_2 = 0
+    # Row 3n-1
+    M[3*n-1, 0] = 1.0
+    M[3*n-1, 1] = -2.0
+    M[3*n-1, 2] = 1.0
+    
+    # End: B_{3n-2} - 2 B_{3n-1} + B_{3n} = 0
+    # Row 3n
+    M[3*n, 3*n-2] = 1.0
+    M[3*n, 3*n-1] = -2.0
+    M[3*n, 3*n]   = 1.0
+
     ##
     ## TODO : Put DataPts to the first (n+1) rows of R.
     ##
+    # (Done above in the C0 lop)
     
     # return the solution
     return np.linalg.solve(M, R)    
@@ -211,17 +237,15 @@ if __name__ == "__main__":
         # for each segment : compute and plot
         for i in range(0,n) :
             
-            ##
-            ## TODO : Put the control points of i-th spline segment into iBezierPts.
-            ##        - for a quadratic segment (C1 spline), you need 3 control points.
-            ##        - for a cubic segment (C2 spline), you need 4 control points.
-            ##
-            ##        When it's done, uncomment the following code to compute and plot the segment.
-            ##
-            
-            pass
-            #CurvePts = BezierCurve( iBezierPts, density )
-            #plt.plot( CurvePts[:,0], CurvePts[:,1], '-', linewidth=3 )
+            # Quadratic C1: 3 control points ( B_{2i}, B_{2i+1}, B_{2i+2} )
+            if not c2:
+                iBezierPts = BezierPts[2*i : 2*i+3]
+            # Cubic C2: 4 control points ( to be implemented later )
+            else:
+                 iBezierPts = BezierPts[3*i : 3*i+4]
+
+            CurvePts = BezierCurve( iBezierPts, density )
+            plt.plot( CurvePts[:,0], CurvePts[:,1], '-', linewidth=3 )
 
 
         # plot the datapoints
@@ -241,7 +265,7 @@ if __name__ == "__main__":
         ## TODO : Uncomment if you want to save the render as png image in data/
         ##
         
-        #plt.savefig( DATADIR + dataname + ".png" )
+        plt.savefig( DATADIR + dataname + "_" + cstr + "_" + str(density) + ".png" )
         
         # render
         plt.show()        

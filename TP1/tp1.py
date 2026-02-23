@@ -55,7 +55,10 @@ def ReadPolygon( filename ) :
 #    point b_i^k from the De Casteljau algorithm.
 #
 def DeCasteljau( BezierPts, k, i, t ) :
-    pass
+    if k == 0:
+        return BezierPts[i,:]
+    else:
+        return (1-t)*DeCasteljau(BezierPts, k-1, i, t) + t*DeCasteljau(BezierPts, k-1, i+1, t)
     #########
     ## TODO : Implement the De Casteljau algorithm.
     #########
@@ -79,7 +82,9 @@ def BezierCurve( BezierPts, N ) :
     
     # initialize curvepoints as zeros
     CurvePts = np.zeros([N,2])
-    
+    samples = np.linspace(0.0,1.0,num=N)
+    for i in range(N):
+        CurvePts[i,:] = DeCasteljau(BezierPts, degree, 0, samples[i])
     #########
     ## TODO : Compute N curve points for t varying uniformly in [0.0,1.0]
     #########
@@ -151,14 +156,27 @@ if __name__ == "__main__":
         #########
         ## TODO : Uncomment if you want to save the render as png image in the data/ dir
         #########
-        #plt.savefig( DATADIR + dataname + ".png" )
+        # plt.savefig( DATADIR + dataname + ".png" )
+        plt.savefig( DATADIR + dataname + "_" + str(density) + ".png" )
         
         #########
         ## TODO : Compute intermediate polygons b_i^k for k=1,...,degree-1 and i=0,...,degree-k
         #########
+        t = 0.5
+        degree = len(BezierPts) - 1
         
+        for k in range(1, degree):
+            points_etage = []
+            
+            for i in range(degree - k + 1):
+                p = DeCasteljau(BezierPts, k, i, t)
+                points_etage.append(p)
+            
+            points_etage = np.array(points_etage)
+            
+            plt.plot(points_etage[:, 0], points_etage[:, 1], '--', alpha=0.5)
         #########
         ## TODO : Add plt.plot commands to plot the intermediate polygons
         #########
         
-        plt.show()
+        #0plt.show()
